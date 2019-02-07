@@ -60,6 +60,11 @@ RUN mkdir -p /var/log/supervisor && \
 COPY ssh/id_rsa .ssh/id_rsa
 COPY bash/profile .profile
 
+#Configure Persistent Volumes Permissions
+RUN chown mysql:mysql /var/lib/mysql
+RUN chown grafana:grafana /var/lib/grafana
+RUN chown influxdb:influxdb /var/lib/influxdb
+
 # Configure MySql
 COPY scripts/setup_mysql.sh /tmp/setup_mysql.sh
 
