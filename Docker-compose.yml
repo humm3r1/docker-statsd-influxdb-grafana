@@ -1,0 +1,16 @@
+version: 3
+services:
+    docker-statsd-influxdb-grafana:
+        restart: unless-stopped
+        volumes:
+            - '/mnt/influxdb:/var/lib/influxdb:Z'
+            - '/mnt/mysql:/var/lib/mysql'
+            - '/mnt/grafana:/var/lib/grafana'
+        container_name: docker-statsd-influxdb-grafana
+        ports:
+            - '3003:3003'
+            - '3004:8888'
+            - '8086:8086'
+            - '22022:22'
+            - '8125:8125/udp'
+        image: 'samuelebistoletti/docker-statsd-influxdb-grafana:latest'
